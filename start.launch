@@ -1,0 +1,15 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="robot_id" default="1" />
+  <!-- main -->
+  <node pkg="RCB" name="RCB" type="mycode.py" output="screen" ns="robot$(arg robot_id)" />
+
+<!-- Assigning parameter values to the move_base/DWAPlannerROS -->
+  <node
+  name="dynamic_reconfigure_local_costmap"
+  pkg="dynamic_reconfigure"
+  type="dynparam"
+  args="load /robot$(arg robot_id)/move_base/DWAPlannerROS $(find RCB)/params/yaw_goals_param.yaml" />
+  
+  
+</launch>
